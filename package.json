@@ -1,0 +1,36 @@
+{
+  "name": "coinchecker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "Darkartt",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "scripts": {
+    "dev": "npm run build -w @coinchecker/shared && node scripts/dev.mjs",
+    "build": "npm run build -w @coinchecker/shared && npm run build -w @coinchecker/api && npm run build -w @coinchecker/extension",
+    "typecheck": "npm run build -w @coinchecker/shared && npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "verify": "npm run typecheck && npm test && npm run build && npm run verify:package",
+    "verify:package": "node scripts/verify-package.mjs",
+    "services:up": "docker compose up -d postgres redis",
+    "services:down": "docker compose stop postgres redis",
+    "smoke:live": "tsx scripts/live-smoke.ts",
+    "package": "node scripts/package-extension.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.11",
+    "prettier": "^3.6.2",
+    "fflate": "^0.8.2",
+    "vite": "7.3.6"
+  }
+}

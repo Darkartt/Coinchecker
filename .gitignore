@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.local/
+artifacts/
+apps/extension/package-lock.json
+PROGRESS.md
+proggress.md
+design-qa.md
+AGENTS.md

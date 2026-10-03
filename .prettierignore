@@ -1,0 +1,8 @@
+node_modules
+**/dist
+package-lock.json
+artifacts
+docs/design
+apps/extension/worker
+apps/extension/scripts/prepare-sites-build.mjs
+apps/extension/tests/sites-worker.test.mjs
