@@ -9,4 +9,4 @@ Coinchecker branding and the fictional EXM sample mark are bundled with the exte
 | Inter font            | [Inter](https://github.com/rsms/inter), distributed through [Fontsource](https://github.com/fontsource/fontsource) under the SIL Open Font License 1.1                         |
 | Interface icons       | [Tabler Icons](https://github.com/tabler/tabler-icons), MIT licence                                                                                                            |
 
-Fonts, icons, and application scripts are bundled locally. Network marks identify the selected blockchain; they do not imply endorsement by the associated organizations. Dependency licences and copyright notices remain applicable to their respective resources.
+Fonts, icons, and application scripts are bundled locally. Each production build includes `THIRD_PARTY_NOTICES.txt` with the licence and copyright notices for bundled dependencies, including the Inter font. Package verification checks that these notices are present. Network marks identify the selected blockchain; they do not imply endorsement by the associated organizations.

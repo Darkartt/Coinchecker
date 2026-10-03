@@ -15,6 +15,7 @@ for (const file of [
   manifest.background.service_worker,
   ...Object.values(manifest.icons),
   'privacy.html',
+  'THIRD_PARTY_NOTICES.txt',
 ])
   assert.ok(existsSync(path.join(root, file)), `Missing ${file}`);
 const files = [];
@@ -37,6 +38,17 @@ for (const file of files) {
   }
 }
 assert.ok(readFileSync(path.join(root, 'privacy.html'), 'utf8').includes('browsing history'));
+const notices = readFileSync(path.join(root, 'THIRD_PARTY_NOTICES.txt'), 'utf8');
+for (const dependency of [
+  '@fontsource/inter',
+  '@tabler/icons-react',
+  'react',
+  'react-dom',
+  'recharts',
+])
+  assert.ok(notices.includes(`${dependency}@`), `Missing licence for ${dependency}`);
+assert.ok(notices.includes('SIL OPEN FONT LICENSE'), 'Missing bundled font licence');
+assert.ok(notices.includes('MIT License'), 'Missing bundled library licence');
 assert.ok(
   manifest.host_permissions.every(
     (p) =>

@@ -124,8 +124,14 @@ export function ReportView({
     a.download = sample
       ? 'coinchecker-sample.json'
       : `coinchecker-${r.chainId}-${r.address}-${r.id}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    document.body.append(a);
+    try {
+      a.click();
+    } finally {
+      a.remove();
+      // Keep the blob available while the browser starts the asynchronous download.
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    }
   }
   const prominent = ['critical', 'high', 'caution']
     .map((s) => r.findings.find((f) => f.severity === s))
